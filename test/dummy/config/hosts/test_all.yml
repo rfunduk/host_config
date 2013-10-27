@@ -1,0 +1,10 @@
+---
+  load_before:
+    - before
+  load_after:
+    - after
+  an_array:
+    - a
+    - b
+    - c
+  override_me: 3
