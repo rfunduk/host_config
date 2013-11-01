@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.homepage    = "https://github.com/rfunduk/host_config"
   s.summary     = "Simple per-host configuration for Rails 4."
   s.description = ""
+  s.license     = 'MIT'
 
   s.files = Dir["{lib}/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
