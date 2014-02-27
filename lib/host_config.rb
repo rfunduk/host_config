@@ -2,12 +2,13 @@ require 'ostruct'
 require 'socket'
 
 module HostConfig
-  VERSION = "0.0.1"
+  VERSION = "0.0.2"
 
   class MissingConfigFile < StandardError; end
 
   class << self
     def init!( opts={} )
+      @base_path = opts[:base_path] || Rails.root
       @logger = opts[:logger] || Rails.logger
       @hostname = opts[:hostname] || Socket.gethostname.split('.').shift
       @config = {}
@@ -20,7 +21,7 @@ module HostConfig
 
     def load_config( file )
       begin
-        path = "#{Rails.root}/config/hosts/#{file}.yml"
+        path = File.join( @base_path, 'config', 'hosts', "#{file}.yml" )
         data = File.read(path)
         YAML.load( data )
       rescue Errno::ENOENT

@@ -11,6 +11,15 @@ class HostConfigTest < ActiveSupport::TestCase
     assert_equal @config.some_value, 1
   end
 
+  test "doesn't rely on Rails" do
+    require 'logger'
+    assert_nothing_raised do
+      @config = HostConfig.init! hostname: 'test',
+                                 logger: Logger.new($sterr),
+                                 base_path: File.join(Dir.pwd, 'test', 'dummy')
+    end
+  end
+
   test "can be assigned to a constant" do
     AppConfig = HostConfig.init! hostname: 'test'
     assert_kind_of OpenStruct, AppConfig
