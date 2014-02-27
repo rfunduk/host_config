@@ -1,8 +1,9 @@
 require 'ostruct'
 require 'socket'
+require 'active_support/core_ext/hash'
 
 module HostConfig
-  VERSION = "0.0.2"
+  VERSION = "0.0.3"
 
   class MissingConfigFile < StandardError; end
 
